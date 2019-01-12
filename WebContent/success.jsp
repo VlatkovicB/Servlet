@@ -9,11 +9,10 @@
 <title>Result</title>
 </head>
 <body>
-	<%
-		Item item = (Item) session.getAttribute("item");
-	%>
+	<jsp:useBean id="item" class="com.data.Item" scope="session"></jsp:useBean>
 
-	Added
+
+	Added <jsp:getProperty property="name" name="item"/>
 	<%=item.getName()%>, with an ID=<%=item.getId()%>
 	which is<%=item.available()%>.
 </body>

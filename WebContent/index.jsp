@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ page import="com.data.Item"%>
 <%@ page import="com.data.Data"%>
 <!DOCTYPE html>
@@ -7,6 +8,9 @@
 <head>
 <meta charset="utf-8">
 <title>Home Page</title>
+<%
+	request.setAttribute("list", Data.getList());
+%>
 </head>
 
 <body>
@@ -21,6 +25,11 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="item" items="$list">
+					<tr>
+						<td>"${item}"</td>
+					</tr>
+				</c:forEach>
 				<%
 					for (Item item : Data.getList()) {
 				%>
@@ -33,9 +42,11 @@
 				<%
 					}
 				%>
+
 			</tbody>
 		</table>
 		<br>
+		<p>${param.message}</p>
 		<hr>
 		<br> <select name="choice">
 			<option value="add">Add entry</option>

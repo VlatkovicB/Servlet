@@ -1,6 +1,7 @@
 package com.app;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,8 +46,8 @@ public class TestServlet extends HttpServlet {
 
 		data.insert(item);
 
-		request.getSession().setAttribute("item", item);
-		response.sendRedirect("success.jsp");
+		String message = "Added " + item.getName() + " with an ID of " + item.getId();
+		response.sendRedirect("index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 	}
 
 }
