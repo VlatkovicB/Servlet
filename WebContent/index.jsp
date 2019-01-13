@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ page import="com.data.Item"%>
 <%@ page import="com.data.Data"%>
 <!DOCTYPE html>
@@ -25,23 +25,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="$list">
+				<c:forEach items="${list}" var="item">
 					<tr>
-						<td>"${item}"</td>
+						<td>${item.id}</td>
+						<td>${item.name}</td>
+						<td>${item.desc}</td>
+						<td>${item.available}</td>
 					</tr>
 				</c:forEach>
-				<%
-					for (Item item : Data.getList()) {
-				%>
-				<tr>
-					<td><%=item.getId()%></td>
-					<td><%=item.getName()%></td>
-					<td><%=item.getDesc()%></td>
-					<td><%=item.isAvailable()%></td>
-				</tr>
-				<%
-					}
-				%>
 
 			</tbody>
 		</table>
@@ -51,7 +42,6 @@
 		<br> <select name="choice">
 			<option value="add">Add entry</option>
 			<option value="delete">Delete</option>
-			<option value="list">List all</option>
 		</select> <input type="submit" name="submit" value="Submit">
 
 

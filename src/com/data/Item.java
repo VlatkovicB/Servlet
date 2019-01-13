@@ -2,12 +2,13 @@ package com.data;
 
 public class Item {
 	private int id;
+	private static int counter = 1;
 	private String name;
 	private String desc;
 	private boolean available;
 
-	public Item(int id, String name, String desc, boolean available) {
-		this.id = id;
+	public Item(String name, String desc, boolean available) {
+		this.id = counter++;
 		this.name = name;
 		this.desc = desc;
 		this.available = available;

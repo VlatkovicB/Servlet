@@ -28,8 +28,6 @@ public class TestServlet extends HttpServlet {
 			break;
 		case "delete":
 			break;
-		case "list":
-			break;
 		}
 	}
 
@@ -41,8 +39,7 @@ public class TestServlet extends HttpServlet {
 			available = true;
 		}
 
-		Item item = new Item(Integer.parseInt(request.getParameter("id")), request.getParameter("name"),
-				request.getParameter("desc"), available);
+		Item item = new Item(request.getParameter("name"), request.getParameter("desc"), available);
 
 		data.insert(item);
 
