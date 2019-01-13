@@ -24,4 +24,13 @@ public class Data {
 		itemList.add(item);
 	}
 
+	public boolean delete(int id) {
+		for (Item item : itemList) {
+			if (item.getId() == id) {
+				return itemList.remove(item);
+			}
+		}
+		return false;
+	}
+
 }
