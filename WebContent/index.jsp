@@ -11,6 +11,43 @@
 <%
 	request.setAttribute("list", Data.getList());
 %>
+<style>
+table {
+	width: 100%;
+}
+
+thead, tbody, tr, td, th {
+	display: block;
+}
+
+tr:after {
+	content: ' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+thead th {
+	height: 30px;
+
+	/*text-align: left;*/
+}
+
+tbody {
+	height: 120px;
+	overflow-y: auto;
+}
+
+thead {
+	/* fallback */
+	
+}
+
+tbody td, thead th {
+	width: 19.2%;
+	float: left;
+}
+</style>
 </head>
 
 <body>
@@ -24,7 +61,7 @@
 					<th>Available</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody style="height: 120px !important; overflow: scroll; ">
 				<c:forEach items="${list}" var="item">
 					<tr>
 						<td>${item.id}</td>
@@ -33,7 +70,6 @@
 						<td>${item.available}</td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 		<br>
@@ -42,6 +78,7 @@
 		<br> <select name="choice">
 			<option value="add">Add entry</option>
 			<option value="delete">Delete</option>
+			<option value="update">Update</option>
 		</select> <input type="submit" name="submit" value="Submit">
 
 

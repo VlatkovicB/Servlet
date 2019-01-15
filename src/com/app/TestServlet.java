@@ -30,6 +30,9 @@ public class TestServlet extends HttpServlet {
 		case "delete":
 			response.sendRedirect("delete.jsp");
 			break;
+		case "update":
+			response.sendRedirect("update.jsp");
+			break;
 		}
 	}
 
@@ -43,27 +46,41 @@ public class TestServlet extends HttpServlet {
 			if (request.getParameter("yesorno").equalsIgnoreCase("true")) {
 				available = true;
 			}
-
 			Item item = new Item(request.getParameter("name"), request.getParameter("desc"), available);
 
 			data.insert(item);
 
 			message = "Added " + item.getName() + " with an ID of " + item.getId();
+			response.sendRedirect("index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 			break;
 		}
 		case "delete":
-			boolean result = data.delete(Integer.parseInt(request.getParameter("id")));
-			if (result != false) {
-				message = Integer.parseInt(request.getParameter("id")) + " has been removed.";
-			} else {
-				message = "There is no item with that ID.";
-			}
+			doDelete(request, response);
 			break;
+		case "updateChoice":
+
 		default:
 			break;
+		}
+
+	}
+
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String message = null;
+		boolean result = data.delete(Integer.parseInt(request.getParameter("id")));
+		if (result != false) {
+			message = Integer.parseInt(request.getParameter("id")) + " has been removed.";
+		} else {
+			message = "There is no item with that ID.";
 		}
 
 		response.sendRedirect("index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 	}
 
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
 }
